@@ -33,14 +33,15 @@ syn keyword   moveKeyword     box
 syn keyword   moveKeyword     continue
 syn keyword   moveKeyword     crate
 syn keyword   moveKeyword     extern nextgroup=moveExternCrate,moveObsoleteExternMod skipwhite skipempty
-syn keyword   moveKeyword     fun 
-syn keyword   moveKeyword     public 
+syn keyword   moveKeyword     fun
+syn keyword   moveKeyword     public
 syn keyword   moveKeyword     entry nextgroup=moveFuncName skipwhite skipempty
 syn keyword   moveKeyword     module nextgroup=moveFuncName skipwhite skipempty
 syn keyword   moveKeyword     impl let
 syn keyword   moveKeyword     macro
 syn keyword   moveKeyword     pub nextgroup=movePubScope skipwhite skipempty
 syn keyword   moveKeyword     return
+syn keyword   moveKeyword     abort
 syn keyword   moveKeyword     yield
 syn keyword   moveSuper       super
 syn keyword   moveKeyword     where

@@ -1,6 +1,6 @@
 " Vim syntax file
-" Language: Move 
-" Maintainer: Richard Melkonian <r.v.melkonian@gmail.com>
+" Language: Sui Move
+" Maintainer: Antonio Yang <Antonio.Yang@sui.io>
 " Latest Version: 0.1.0
 
 if exists("b:current_syntax")
@@ -11,12 +11,6 @@ endif
 " Basic keywords {{{2
 syn keyword   moveConditional match if else
 syn keyword   moveRepeat loop while
-" `:syn match` must be used to prioritize highlighting `for` keyword.
-syn match     moveRepeat /\<for\>/
-" Highlight `for` keyword in `impl ... for ... {}` statement. This line must
-" be put after previous `syn match` line to overwrite it.
-syn match     moveKeyword /\%(\<impl\>.\+\)\@<=\<for\>/
-syn keyword   moveRepeat in
 syn keyword   moveTypedef type nextgroup=moveIdentifier skipwhite skipempty
 syn keyword   moveStructure struct enum nextgroup=moveIdentifier skipwhite skipempty
 syn keyword   moveUnion union nextgroup=moveIdentifier skipwhite skipempty contained
@@ -26,33 +20,22 @@ syn keyword   moveExistential existential nextgroup=moveTypedef skipwhite skipem
 syn match moveExistentialContextual /\<existential\_s\+type/ transparent contains=moveExistential,moveTypedef
 
 syn match     moveAssert      "\<assert\(\w\)*!" contained
-syn match     movePanic       "\<panic\(\w\)*!" contained
-syn match     moveAsync       "\<async\%(\s\|\n\)\@="
 syn keyword   moveKeyword     break
-syn keyword   moveKeyword     box
 syn keyword   moveKeyword     continue
-syn keyword   moveKeyword     crate
+syn keyword   moveKeyword     package
 syn keyword   moveKeyword     extern nextgroup=moveExternCrate,moveObsoleteExternMod skipwhite skipempty
 syn keyword   moveKeyword     fun
 syn keyword   moveKeyword     public
 syn keyword   moveKeyword     entry nextgroup=moveFuncName skipwhite skipempty
 syn keyword   moveKeyword     module nextgroup=moveFuncName skipwhite skipempty
-syn keyword   moveKeyword     impl let
+syn keyword   moveKeyword     let
 syn keyword   moveKeyword     macro
-syn keyword   moveKeyword     pub nextgroup=movePubScope skipwhite skipempty
+syn keyword   moveKeyword     public nextgroup=movePubScope skipwhite skipempty
 syn keyword   moveKeyword     return
 syn keyword   moveKeyword     abort
-syn keyword   moveKeyword     yield
-syn keyword   moveSuper       super
-syn keyword   moveKeyword     where
-syn keyword   moveUnsafeKeyword unsafe
 syn keyword   moveKeyword     use nextgroup=moveModPath skipwhite skipempty
-" FIXME: Scoped impl's name is also fallen in this category
-syn keyword   moveKeyword     mod trait nextgroup=moveIdentifier skipwhite skipempty
-syn keyword   moveStorage     move mut ref static const
-syn match     moveDefault     /\<default\ze\_s\+\(impl\|fn\|type\|const\)\>/
-syn keyword   moveAwait       await
-syn match     moveKeyword     /\<try\>!\@!/ display
+syn keyword   moveStorage     mut const
+syn keyword   moveKeyword     has
 
 syn keyword movePubScopeCrate crate contained
 syn match movePubScopeDelim /[()]/ contained
@@ -101,9 +84,6 @@ syn keyword moveTrait Default
 syn keyword moveTrait Iterator Extend IntoIterator
 syn keyword moveTrait DoubleEndedIterator ExactSizeIterator
 syn keyword moveEnum Option
-syn keyword moveEnumVariant Some None
-syn keyword moveEnum Result
-syn keyword moveEnumVariant Ok Err
 syn keyword moveTrait SliceConcatExt
 syn keyword moveTrait String ToString
 syn keyword moveTrait Vec

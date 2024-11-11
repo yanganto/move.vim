@@ -8,7 +8,7 @@ Install via your vim plugin manager of choice.
 For `vim-plug` add to your `.vimrc`:
 
 ```
-Plug 'yanganto/move.vim'
+Plug 'yanganto/move.vim', {'branch': 'sui-move'}
 ```
 
 Then run `:PlugInstall`.

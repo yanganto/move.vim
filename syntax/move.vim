@@ -64,6 +64,15 @@ syn region moveString        matchgroup=moveStringDelimiter start='b\?r\z(#*\)"'
 syn region moveCommentLine  start="//"  end="$"   contains=moveTodo,@Spell
 syn region moveCommentBlock matchgroup=moveCommentBlock start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=moveTodo,moveCommentBlockNest,@Spell
 
+syn region    moveAttribute   start="#\[" end="\]" contains=@moveAttributeContents,moveAttributeParenthesizedParens,moveAttributeParenthesizedCurly,moveAttributeParenthesizedBrackets
+syn region    moveAttributeParenthesizedParens matchgroup=moveAttribute start="\w\%(\w\)*("rs=e end=")"re=s transparent contained contains=moveAttributeBalancedParens,@moveAttributeContents
+syn region    moveAttributeParenthesizedCurly matchgroup=moveAttribute start="\w\%(\w\)*{"rs=e end="}"re=s transparent contained contains=moveAttributeBalancedCurly,@moveAttributeContents
+syn region    moveAttributeParenthesizedBrackets matchgroup=moveAttribute start="\w\%(\w\)*\["rs=e end="\]"re=s transparent contained contains=moveAttributeBalancedBrackets,@moveAttributeContents
+syn region    moveAttributeBalancedParens matchgroup=moveAttribute start="("rs=e end=")"re=s transparent contained contains=moveAttributeBalancedParens,@moveAttributeContents
+syn region    moveAttributeBalancedCurly matchgroup=moveAttribute start="{"rs=e end="}"re=s transparent contained contains=moveAttributeBalancedCurly,@moveAttributeContents
+syn region    moveAttributeBalancedBrackets matchgroup=moveAttribute start="\["rs=e end="\]"re=s transparent contained contains=moveAttributeBalancedBrackets,@moveAttributeContents
+syn cluster   moveAttributeContents contains=moveString,moveCommentLine,moveCommentBlock
+
 if !exists("b:current_syntax_embed")
     let b:current_syntax_embed = 1
     syntax include @MoveCodeInComment <sfile>:p:h/move.vim
@@ -116,8 +125,6 @@ hi def link moveMacroVar                Macro
 hi def link moveType                    Type
 hi def link moveTodo                    Todo
 hi def link moveAttribute               PreProc
-hi def link moveDerive                  PreProc
-hi def link moveDefault                 StorageClass
 hi def link moveStorage                 StorageClass
 hi def link moveObsoleteStorage         Error
 hi def link moveLabel                   Label

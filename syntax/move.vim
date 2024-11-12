@@ -16,8 +16,7 @@ syn keyword   moveKeyword     public nextgroup=movePubScope skipwhite skipempty
 syn keyword   moveKeyword     use nextgroup=moveModPath skipwhite skipempty
 syn keyword   moveStorage     mut const
 syn keyword   movePubScopePkg package contained
-syn keyword   moveType        isize usize char bool u8 u16 u32 u64 u128 f32
-syn keyword   moveType        f64 i8 i16 i32 i64 i128 str Self
+syn keyword   movePrimitive   u8 u16 u32 u64 u128 u256
 syn keyword   moveAbility     copy drop key store
 syn keyword   moveEnum        Option
 syn keyword   moveCommonType  UID ID Balance String vector
@@ -50,15 +49,8 @@ syn match moveEscape      display contained /\\u{\%(\x_*\)\{1,6}}/ " Unicode
 syn match moveStrConcat   display contained /\\\n\s*/
 
 syn match moveAddress     display "@0x[a-fA-F0-9_]"
-syn match moveDecNumber   display "\<[0-9][0-9_]*\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
-syn match moveHexNumber   display "\<0x[a-fA-F0-9_]\+\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
-syn match moveOctNumber   display "\<0o[0-7_]\+\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
-syn match moveBinNumber   display "\<0b[01_]\+\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
-
-syn match moveFloat       display "\<[0-9][0-9_]*\.\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\|\.\)\@!"
-syn match moveFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\%([eE][+-]\=[0-9_]\+\)\=\(f32\|f64\)\="
-syn match moveFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE][+-]\=[0-9_]\+\)\(f32\|f64\)\="
-syn match moveFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE][+-]\=[0-9_]\+\)\=\(f32\|f64\)"
+syn match moveNamedAddr   display "@\w*"
+syn match moveDecNumber   display "\<[0-9][0-9_]*\%([u]\%(8\|16\|32\|64\|128\|256\)\)\="
 
 syn match moveCharInvalid display contained /b\?'\zs[\n\r\t']\ze'/
 syn match moveCharInvalid display contained /b'\zs[^[:cntrl:][:graph:][:alnum:][:space:]]\ze'/ " Unicode
@@ -83,6 +75,8 @@ hi def link moveOctNumber               moveNumber
 hi def link moveBinNumber               moveNumber
 hi def link moveAddress                 moveNumber
 hi def link moveIdentifierPrime         moveIdentifier
+
+hi def link movePrimitive               moveType
 hi def link moveAbility                 moveType
 hi def link moveCommonType              moveType
 
@@ -98,7 +92,6 @@ hi def link moveNumber                  Number
 hi def link moveBoolean                 Boolean
 hi def link moveEnum                    moveType
 hi def link moveSelf                    Constant
-hi def link moveFloat                   Float
 hi def link moveArrowChar               moveOperator
 hi def link moveOperator                Operator
 hi def link moveKeyword                 Keyword

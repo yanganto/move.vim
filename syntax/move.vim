@@ -25,6 +25,7 @@ syn keyword   moveBoolean     true false
 syn keyword   moveTodo        contained TODO FIXME XXX NB NOTE SAFETY
 
 syn match moveMacro       "macro fun"
+syn match moveMacroVar    "$\w\+"
 syn match movePubScopeDel /[()]/ contained
 syn match movePubScope    /([^()]*)/ contained contains=movePubScopeDel,movePubScopePkg,moveModPath,moveModPathSep,moveSelf transparent
 
@@ -74,6 +75,7 @@ hi def link moveHexNumber               moveNumber
 hi def link moveOctNumber               moveNumber
 hi def link moveBinNumber               moveNumber
 hi def link moveAddress                 moveNumber
+hi def link moveNamedAddr               moveNumber
 hi def link moveIdentifierPrime         moveIdentifier
 
 hi def link movePrimitive               moveType
@@ -110,6 +112,7 @@ hi def link moveCommentLine             Comment
 hi def link moveCommentBlock            moveCommentLine
 hi def link moveAssert                  PreCondit
 hi def link moveMacro                   Macro
+hi def link moveMacroVar                Macro
 hi def link moveType                    Type
 hi def link moveTodo                    Todo
 hi def link moveAttribute               PreProc

@@ -53,6 +53,7 @@ syn match moveStrConcat   display contained /\\\n\s*/
 syn match moveAddress     display "@0x[a-fA-F0-9_]"
 syn match moveNamedAddr   display "@\w*"
 syn match moveDecNumber   display "\<[0-9][0-9_]*\%([u]\%(8\|16\|32\|64\|128\|256\)\)\="
+syn match moveHexNumber   display "\<0x[a-fA-F0-9_][a-fA-F0-9_]*\%([u]\%(8\|16\|32\|64\|128\|256\)\)\="
 
 syn region moveString        matchgroup=moveStringDelimiter start=+b"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat
 syn region moveString        matchgroup=moveStringDelimiter start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat,@Spell
@@ -78,8 +79,6 @@ endif
 
 hi def link moveDecNumber               moveNumber
 hi def link moveHexNumber               moveNumber
-hi def link moveOctNumber               moveNumber
-hi def link moveBinNumber               moveNumber
 hi def link moveAddress                 moveNumber
 hi def link moveNamedAddr               moveNumber
 hi def link moveIdentifierPrime         moveIdentifier

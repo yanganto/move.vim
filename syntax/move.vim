@@ -24,6 +24,7 @@ syn keyword   moveSelf        self
 syn keyword   moveBoolean     true false
 syn keyword   moveTodo        contained TODO FIXME XXX NB NOTE SAFETY
 
+syn match moveSection     "\(Imports\|Errors\|Constants\|Structs\|Method Aliases\|Public-Mutative Functions\|Public-View Functions\|Admin Functions\|Public-Package Functions\|Private Functions\|Test Functions\)"
 syn match moveMacro       "macro fun"
 syn match moveMacroVar    "$\w\+"
 syn match movePubScopeDel /[()]/ contained
@@ -53,16 +54,12 @@ syn match moveAddress     display "@0x[a-fA-F0-9_]"
 syn match moveNamedAddr   display "@\w*"
 syn match moveDecNumber   display "\<[0-9][0-9_]*\%([u]\%(8\|16\|32\|64\|128\|256\)\)\="
 
-syn match moveCharInvalid display contained /b\?'\zs[\n\r\t']\ze'/
-syn match moveCharInvalid display contained /b'\zs[^[:cntrl:][:graph:][:alnum:][:space:]]\ze'/ " Unicode
-syn match moveChar        /b'\([^\\]\|\\\(.\|x\x\{2}\)\)'/ contains=moveEscape,moveEscapeError,moveCharInvalid
-syn match moveChar        /'\([^\\]\|\\\(.\|x\x\{2}\|u{\%(\x_*\)\{1,6}}\)\)'/ contains=moveEscape,moveEscapeError,moveCharInvalid
-
 syn region moveString        matchgroup=moveStringDelimiter start=+b"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat
 syn region moveString        matchgroup=moveStringDelimiter start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat,@Spell
 syn region moveString        matchgroup=moveStringDelimiter start='b\?r\z(#*\)"' end='"\z1' contains=@Spell
-syn region moveCommentLine  start="//"  end="$"   contains=moveTodo,@Spell
-syn region moveCommentBlock matchgroup=moveCommentBlock start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=moveTodo,moveCommentBlockNest,@Spell
+syn region moveCommentLine   start="//"  end="$"   contains=moveTodo,@Spell
+syn region moveCommentSec    start="// ==="  end="===$"   contains=moveSection
+syn region moveCommentBlock  matchgroup=moveCommentBlock start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=moveTodo,moveCommentBlockNest,@Spell
 
 syn region    moveAttribute   start="#\[" end="\]" contains=@moveAttributeContents,moveAttributeParenthesizedParens,moveAttributeParenthesizedCurly,moveAttributeParenthesizedBrackets
 syn region    moveAttributeParenthesizedParens matchgroup=moveAttribute start="\w\%(\w\)*("rs=e end=")"re=s transparent contained contains=moveAttributeBalancedParens,@moveAttributeContents
@@ -97,8 +94,6 @@ hi def link moveEscapeError             Error
 hi def link moveStrConcat               Special
 hi def link moveString                  String
 hi def link moveStringDelimiter         String
-hi def link moveCharInvalid             Error
-hi def link moveChar                    Character
 hi def link moveNumber                  Number
 hi def link moveBoolean                 Boolean
 hi def link moveEnum                    moveType
@@ -124,6 +119,8 @@ hi def link moveMacro                   Macro
 hi def link moveMacroVar                Macro
 hi def link moveType                    Type
 hi def link moveTodo                    Todo
+hi def link moveCommentSec              Comment
+hi def link moveSection                 Label
 hi def link moveAttribute               PreProc
 hi def link moveStorage                 StorageClass
 hi def link moveObsoleteStorage         Error

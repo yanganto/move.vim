@@ -39,7 +39,6 @@ syn match moveFuncCall    "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
 
 syn match moveOperator    display "\%(+\|-\|/\|*\|=\|\^\|&\||\|!\|>\|<\|%\)=\?"
 syn match moveOperator    display "&&\|||"
-syn match moveArrowChar   display "->"
 
 syn match moveMacro       '\w\(\w\)*!' contains=moveAssert
 syn match moveMacro       '#\w\(\w\)*' contains=moveAssert
@@ -97,7 +96,6 @@ hi def link moveNumber                  Number
 hi def link moveBoolean                 Boolean
 hi def link moveEnum                    moveType
 hi def link moveSelf                    Constant
-hi def link moveArrowChar               moveOperator
 hi def link moveOperator                Operator
 hi def link moveKeyword                 Keyword
 hi def link moveStruct                  Keyword

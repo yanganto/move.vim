@@ -1,5 +1,5 @@
 # move.vim 
-Syntax highlighting for the Sui Move smart contract programming language. Open to PRs to extend this tool. 
+Syntax highlighting for the 2024 edition of Sui Move smart contract programming language.
 
 ### Installation
 

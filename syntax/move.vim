@@ -16,7 +16,7 @@ syn keyword   moveKeyword     public nextgroup=movePubScope skipwhite skipempty
 syn keyword   moveKeyword     use nextgroup=moveModPath skipwhite skipempty
 syn keyword   moveStorage     mut const
 syn keyword   movePubScopePkg package contained
-syn keyword   movePrimitive   u8 u16 u32 u64 u128 u256
+syn keyword   movePrimitive   u8 u16 u32 u64 u128 u256 address
 syn keyword   moveAbility     copy drop key store
 syn keyword   moveEnum        Option
 syn keyword   moveCommonType  UID ID Balance String vector

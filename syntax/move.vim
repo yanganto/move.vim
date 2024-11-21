@@ -54,6 +54,7 @@ syn match moveAddress     display "@0x[a-fA-F0-9_]"
 syn match moveNamedAddr   display "@\w*"
 syn match moveDecNumber   display "\<[0-9][0-9_]*\%([u]\%(8\|16\|32\|64\|128\|256\)\)\="
 syn match moveHexNumber   display "\<0x[a-fA-F0-9_][a-fA-F0-9_]*\%([u]\%(8\|16\|32\|64\|128\|256\)\)\="
+syn match potatoStructErr display "\u.*Potato"
 
 syn region moveString        matchgroup=moveStringDelimiter start=+b"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat
 syn region moveString        matchgroup=moveStringDelimiter start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat,@Spell
@@ -68,6 +69,7 @@ syn region    moveAttributeParenthesizedBrackets matchgroup=moveAttribute start=
 syn region    moveAttributeBalancedParens matchgroup=moveAttribute start="("rs=e end=")"re=s transparent contained contains=moveAttributeBalancedParens,@moveAttributeContents
 syn region    moveAttributeBalancedCurly matchgroup=moveAttribute start="{"rs=e end="}"re=s transparent contained contains=moveAttributeBalancedCurly,@moveAttributeContents
 syn region    moveAttributeBalancedBrackets matchgroup=moveAttribute start="\["rs=e end="\]"re=s transparent contained contains=moveAttributeBalancedBrackets,@moveAttributeContents
+
 syn cluster   moveAttributeContents contains=moveString,moveCommentLine,moveCommentBlock
 
 if !exists("b:current_syntax_embed")
@@ -122,6 +124,7 @@ hi def link moveAttribute               PreProc
 hi def link moveStorage                 StorageClass
 hi def link moveObsoleteStorage         Error
 hi def link moveLabel                   Label
+hi def link potatoStructErr             Error
 
 syn sync minlines=200
 syn sync maxlines=500

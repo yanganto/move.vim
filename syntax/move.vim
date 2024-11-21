@@ -28,6 +28,7 @@ syn match moveCustomSec   "=== \w.* ==="
 syn match moveSection     "=== \(Imports\|Errors\|Constants\|Structs\|Method Aliases\|Public-Mutative Functions\|Public-View Functions\|Admin Functions\|Public-Package Functions\|Private Functions\|Test Functions\) ==="
 syn match moveMacro       "macro fun"
 syn match moveMacroVar    "$\w\+"
+syn match moveSpecialFn   "\(native\|entry\) fun"
 syn match movePubScopeDel /[()]/ contained
 syn match movePubScope    /([^()]*)/ contained contains=movePubScopeDel,movePubScopePkg,moveModPath,moveModPathSep,moveSelf transparent
 
@@ -116,6 +117,7 @@ hi def link moveCommentBlock            moveCommentLine
 hi def link moveAssert                  PreCondit
 hi def link moveMacro                   Macro
 hi def link moveMacroVar                Macro
+hi def link moveSpecialFn               Special
 hi def link moveType                    Type
 hi def link moveTodo                    Todo
 hi def link moveSection                 Label

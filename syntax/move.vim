@@ -58,7 +58,7 @@ syn match moveHexNumber   display "\<0x[a-fA-F0-9_][a-fA-F0-9_]*\%([u]\%(8\|16\|
 syn match potatoStructErr display "\u.*Potato"
 
 syn region moveString        matchgroup=moveStringDelimiter start=+b"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat
-syn region moveString        matchgroup=moveStringDelimiter start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat,@Spell
+syn region moveStringErr     matchgroup=moveStringDelimiter start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=moveEscape,moveEscapeError,moveStrConcat,@Spell
 syn region moveString        matchgroup=moveStringDelimiter start='b\?r\z(#*\)"' end='"\z1' contains=@Spell
 syn region moveCommentLine   start="//"  end="$"   contains=moveTodo,moveSection,moveCustomSec,@Spell
 syn region moveCommentBlock  matchgroup=moveCommentBlock start="/\*\%(!\|\*[*/]\@!\)\@!" end="\*/" contains=moveTodo,moveCommentBlockNest,@Spell
@@ -91,7 +91,6 @@ hi def link moveCommonType              moveType
 
 hi def link moveSigil                   StorageClass
 hi def link moveEscape                  Special
-hi def link moveEscapeError             Error
 hi def link moveStrConcat               Special
 hi def link moveString                  String
 hi def link moveStringDelimiter         String
@@ -124,9 +123,11 @@ hi def link moveSection                 Label
 hi def link moveCustomSec               Todo
 hi def link moveAttribute               PreProc
 hi def link moveStorage                 StorageClass
-hi def link moveObsoleteStorage         Error
 hi def link moveLabel                   Label
-hi def link potatoStructErr             Error
+hi def link moveErrorSyntax             Error
+hi def link moveEscapeError             moveErrorSyntax
+hi def link potatoStructErr             moveErrorSyntax
+hi def link moveStringErr               moveErrorSyntax
 
 syn sync minlines=200
 syn sync maxlines=500

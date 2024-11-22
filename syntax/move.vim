@@ -23,6 +23,7 @@ syn keyword   moveCommonType  UID ID Balance String vector
 syn keyword   moveSelf        self
 syn keyword   moveBoolean     true false
 syn keyword   moveTodo        contained TODO FIXME XXX NB NOTE SAFETY
+syn keyword   moveInitFn      init
 
 syn match moveCustomSec   "=== \w.* ==="
 syn match moveSection     "=== \(Imports\|Errors\|Constants\|Structs\|Method Aliases\|Public-Mutative Functions\|Public-View Functions\|Admin Functions\|Public-Package Functions\|Private Functions\|Test Functions\) ==="
@@ -116,7 +117,6 @@ hi def link moveCommentBlock            moveCommentLine
 hi def link moveAssert                  PreCondit
 hi def link moveMacro                   Macro
 hi def link moveMacroVar                Macro
-hi def link moveSpecialFn               Special
 hi def link moveType                    Type
 hi def link moveTodo                    Todo
 hi def link moveSection                 Label
@@ -124,6 +124,8 @@ hi def link moveCustomSec               Todo
 hi def link moveAttribute               PreProc
 hi def link moveStorage                 StorageClass
 hi def link moveLabel                   Label
+hi def link moveSpecialFn               Special
+hi def link moveInitFn                  Special
 hi def link moveErrorSyntax             Error
 hi def link moveEscapeError             moveErrorSyntax
 hi def link potatoStructErr             moveErrorSyntax

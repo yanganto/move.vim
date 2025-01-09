@@ -20,7 +20,7 @@ syn keyword   movePrimitive   u8 u16 u32 u64 u128 u256 address bool
 syn keyword   moveAbility     copy drop key store
 syn keyword   moveEnum        Option
 syn keyword   moveCommonType  UID ID Balance String vector Coin Table VecSet
-syn keyword   moveSelf        self
+syn keyword   moveSelf        self _self
 syn keyword   moveBoolean     true false
 syn keyword   moveTodo        contained TODO FIXME XXX NB NOTE SAFETY
 syn keyword   moveInitFn      init
